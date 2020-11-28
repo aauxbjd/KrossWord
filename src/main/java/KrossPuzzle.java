@@ -5,7 +5,9 @@ import javax.swing.JOptionPane;
 public class KrossPuzzle {
     private int size;
     int[][] grid;
-    String[] words = new String[100];
+    int startString=0;
+    //String[] words;
+    List<String> words = new ArrayList<String>();
     
     public KrossPuzzle(String fName, String fNameWord){
         loadPuzzleFromFile(fName);
@@ -46,8 +48,8 @@ public class KrossPuzzle {
             Scanner fileScan = new Scanner(inFile);
             while (fileScan.hasNext()) 
             {
-                words[index] = fileScan.next();
-                System.out.println(words[index]);
+                words.add(fileScan.next());
+                System.out.println(words.get(index));
                 index++;
               
             }
@@ -56,24 +58,37 @@ public class KrossPuzzle {
              String mess ="An exception was thrown while \nworking with the file: "+fNameWord;
             JOptionPane.showMessageDialog(null, mess,"error message",0);
         }
+        System.err.println("word size: "+words.size());
+
+       //boolean array of arrary to check if a character in the word was inserted
+       
+       boolean filledWord[][]= new boolean[words.size()][];
+       for(int i = 0; i < words.size(); i++)
+       {
+           filledWord[i] = new boolean[words.get(i).length()];
+           System.err.println(words.get(i).length());
+           
+       }
+    //--test--prints 2D boolean array from above
+    //    for(int i=0; i<filledWord.length;i++){
+    //        for(int j= 0; j<(words.get(i).length());j++){
+    //            System.out.print(filledWord[i][j]+" ");
+
+    //        }
+    //        System.out.print("\n");
+    //    }
+
+       solveKrossWord(grid,words,startString,filledWord);
         
      
     }
     
-//    private void solution(int[][] grid, String[] words, int dex){
-//        
-//        String word = words[dex];
-//        for (int row = 0; row < grid.length; row++) {
-//            for (int col = 0; col < grid.length; col++) {
-//                if (grid[row][col] == -1 || grid[row][col] == ) {
-//                    
-//                }
-//                
-//            }
-//            
-//        }
-//        
-//    }
+   private void solveKrossWord(int[][] grid, List<String> words, int dex, boolean filledWord[][]){
+       
+       String word = words.get(dex);
+      
+       
+   }
      
     public int getGridPosition(int row, int col){
         return grid[row][col];
