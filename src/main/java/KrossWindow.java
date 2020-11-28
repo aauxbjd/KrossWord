@@ -6,6 +6,7 @@ public class KrossWindow extends JFrame{
     
     KrossDisplay display;
     KrossPuzzle  puzzle;
+    //
     
     public KrossWindow(String fileName, String fileNameWord)
     {
